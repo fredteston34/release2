@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scroll-behavior */
+html {
+  scroll-behavior: smooth;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+.faq-answer.open {
+  max-height: 500px; /* Adjust as needed */
+}
+
+/* Added for scroll animations */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Horizontal scrollbar styling for timeline */
+.timeline-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.timeline-scrollbar::-webkit-scrollbar-track {
+  background: #e2e8f0; /* slate-200 */
+}
+.dark .timeline-scrollbar::-webkit-scrollbar-track {
+    background: #475569; /* slate-600 */
+}
+.timeline-scrollbar::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* blue-500 */
+  border-radius: 4px;
+}
+.timeline-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #2563eb; /* blue-600 */
+}
+
+
+/* Added for animations */
+@layer utilities {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Added for cookie banner slide-in */
+  @keyframes slideInUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  .animate-slide-in-up {
+    animation: slideInUp 0.5s ease-out forwards;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+  
+  @keyframes slideInAndOut {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    15% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    85% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  .animate-slide-in-out {
+      animation: slideInAndOut 5s ease-in-out forwards;
+  }
+  
+  @keyframes confetti-fall {
+    0% { transform: translateY(-100%) rotateZ(15deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotateZ(-15deg); opacity: 0; }
+  }
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 16px;
+    background-color: #fbbd23;
+    animation-name: confetti-fall;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes fadeInFast {
+    from { opacity: 0; transform: translateY(1rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-fast {
+      animation: fadeInFast 0.5s ease-out forwards;
+  }
+}
+
+/* Styles for lazy loading images */
+.lazy-image-loading {
+  filter: blur(10px);
+  clip-path: inset(0);
+}
+.lazy-image-loaded {
+  filter: blur(0px);
+  transition: filter 0.7s ease-in-out;
+}
+
+
+/* Print styles for datasheets */
+@media print {
+  body > *, #root > *:not(.printable-area) {
+    display: none !important;
+  }
+
+  .printable-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: white;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Accessibility Styles */
+.high-contrast {
+  filter: contrast(175%);
+}
+
+.underline-links a {
+  text-decoration: underline !important;
+}
