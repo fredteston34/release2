@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header.tsx';
 import Hero from './components/Hero.tsx';
@@ -17,6 +18,7 @@ const Timeline = lazy(() => import('./components/Timeline.tsx'));
 const Products = lazy(() => import('./components/Products.tsx'));
 const Benefits = lazy(() => import('./components/Benefits.tsx'));
 const SavingsCalculator = lazy(() => import('./components/SavingsCalculator.tsx'));
+const ProductQuiz = lazy(() => import('./components/ProductQuiz.tsx'));
 const Gallery = lazy(() => import('./components/Gallery.tsx'));
 const Videos = lazy(() => import('./components/Videos.tsx'));
 const Testimonials = lazy(() => import('./components/Testimonials.tsx'));
@@ -73,6 +75,9 @@ const App: React.FC = () => {
             </AnimatedSection>
             <AnimatedSection>
               <SavingsCalculator />
+            </AnimatedSection>
+            <AnimatedSection>
+              <ProductQuiz />
             </AnimatedSection>
              <AnimatedSection>
               <FunFacts />
