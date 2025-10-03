@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -138,20 +139,28 @@ html {
 
 /* Print styles for datasheets */
 @media print {
-  body > *, #root > *:not(.printable-area) {
-    display: none !important;
+  body * {
+    visibility: hidden;
   }
-
-  .printable-area {
-    position: fixed;
-    top: 0;
+  .printable-content, .printable-content * {
+    visibility: visible;
+  }
+  .printable-content {
+    position: absolute;
     left: 0;
+    top: 0;
     width: 100%;
-    height: 100%;
-    z-index: 9999;
+    height: auto;
     background: white;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
   }
-
+  .dark .printable-content {
+    background: white; /* Ensure print background is white even in dark mode */
+  }
+  .dark .printable-content * {
+    color: black !important; /* Ensure text is readable */
+  }
   .no-print {
     display: none !important;
   }
